@@ -1,0 +1,21 @@
+2. Kth Row of Pascal's Triangle
+
+Given an integer rowIndex, return the rowIndexth (0-indexed) row of the Pascal's triangle.
+
+https://leetcode.com/problems/pascals-triangle-ii/description/
+
+class Solution {
+    public List<Integer> getRow(int rowIndex) {
+        List<Integer>res = new ArrayList<>();
+        int k=0;
+        long ans=1;
+        res.add((int)ans); // type cast long -> int
+
+        for(int i=1; i<=rowIndex; i++){
+            ans=ans*(rowIndex+1-i);
+            ans=ans/i;
+            res.add((int)ans);
+        }
+        return res;
+    }
+}

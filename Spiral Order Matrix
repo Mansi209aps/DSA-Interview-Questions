@@ -1,0 +1,96 @@
+4. Spiral Order Matrix
+
+Given an integer A, generate a square matrix filled with elements from 1 to A2 in spiral order and return the generated square matrix.
+
+https://interviewbit.com/problems/spiral-order-matrix-ii/
+
+JAVA
+
+public class Solution {
+    public int[][] generateMatrix(int A) {
+        int dir = 1;
+        int top = 0, bottom = A - 1, left = 0, right = A - 1;
+        int x = 1;
+        int ans[][] = new int[A][A];
+   
+        while (top <= bottom && left <= right) {
+            // Left to right
+            if (dir == 1) {
+                for (int i = left; i <= right; i++) {
+                    ans[top][i] = x++;
+                }
+                top++;
+                dir = 2;
+            }
+            // Top to bottom
+            if (dir == 2) {
+                for (int i = top; i <= bottom; i++) {
+                    ans[i][right] = x++;
+                }
+                right--;
+                dir = 3;
+            }
+            // Right to left
+            if (dir == 3) {
+                for (int i = right; i >= left; i--) {
+                    ans[bottom][i] = x++;
+                }
+                bottom--;
+                dir = 4;
+            }
+            // Bottom to top
+            if (dir == 4) {
+                for (int i = bottom; i >= top; i--) {
+                    ans[i][left] = x++;
+                }
+                left++;
+                dir = 1;
+            }
+       }
+    return ans; 
+}}
+
+C++
+
+vector<vector<int> > Solution::generateMatrix(int A) {
+    int dir = 1;
+    int top = 0, bottom = A - 1, left = 0, right = A - 1;
+    int x = 1;
+    vector<vector<int>> ans(A, vector<int>(A, 0));  // Initialize ans with zeros
+   
+    while (top <= bottom && left <= right) {
+        // Left to right
+        if (dir == 1) {
+            for (int i = left; i <= right; i++) {
+                ans[top][i] = x++;
+            }
+            top++;
+            dir = 2;
+        }
+        // Top to bottom
+        if (dir == 2) {
+            for (int i = top; i <= bottom; i++) {
+                ans[i][right] = x++;
+            }
+            right--;
+            dir = 3;
+        }
+        if (dir == 3) {
+            for (int i = right; i >= left; i--) {
+                ans[bottom][i] = x++;
+            }
+            bottom--;
+            dir = 4;
+        }
+        if (dir == 4) {
+            for (int i = bottom; i >= top; i--) {
+                ans[i][left] = x++;
+            }
+            left++;
+            dir = 1;
+        }
+    }
+   
+    return ans; 
+}
+

@@ -1,0 +1,50 @@
+6. Remove Duplicates from Sorted Array
+
+Given a sorted array A consisting of duplicate elements.
+
+Your task is to remove all the duplicates and return the length of the sorted array of distinct elements consisting of all distinct elements present in A.
+
+https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+
+JAVA
+
+public class Solution {
+	public int removeDuplicates(ArrayList<Integer> a) {
+        int i=0; 
+        for(int j=1; j<a.size(); j++){
+            if(!a.get(i).equals(a.get(j))){
+                i++;
+                a.set(i, a.get(j));
+            }
+        }
+        return i+1;
+	}
+}
+
+C++
+
+int Solution::removeDuplicates(vector<int> &A) {
+    int i = 0;
+    for (int j = 1; j < A.size(); j++) {
+        if (A[i] != A[j]) {
+            i++;
+            A[i]=A[j];
+        }
+    }
+    return i + 1;
+}
+
+int Solution::removeDuplicates(vector<int> &A) {
+    int n=A.size();
+    set<int>s;
+    
+    for(int i=0; i<n; i++){
+        s.insert(A[i]);
+    }
+    int i=0;
+    for(auto itr:s){
+        A[i++]=itr;
+    }
+    int res=s.size();
+    return res;
+}

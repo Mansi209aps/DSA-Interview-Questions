@@ -1,0 +1,44 @@
+5. Add One To Number
+
+Given a non-negative number represented as an array of digits, add 1 to the number ( increment the number represented by the digits ).
+
+The digits are stored such that the most significant digit is at the head of the list.
+
+https://leetcode.com/problems/plus-one/description/
+
+C++
+
+vector<int> Solution::plusOne(vector<int> &A) {
+    vector<int>res;
+    
+    int cnt=0,cnt1=0;
+    int n=A.size();
+    for(int i=0; i<n; i++){
+        if(A[i]==0)
+        cnt++;
+        else
+        break;
+    }
+    for(int i=(n-1); i>=0; i--){
+        if(A[i]==9)
+        cnt1++;
+        else
+        break;
+    }
+    
+    if(cnt1!=n){
+        for(int i=cnt; i<(n-1)-cnt1; i++){
+            res.push_back(A[i]);
+        }
+        res.push_back(A[(n-1)-cnt1]+1);
+        for(int i=0; i<cnt1; i++){
+            res.push_back(0);
+        }
+    }else{
+        res.push_back(1);
+        for(int i=0; i<cnt1; i++){
+            res.push_back(0);
+        }
+    }
+    return res;
+}

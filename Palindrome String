@@ -1,0 +1,71 @@
+7. Palindrome String
+
+Given a string, determine if it is a palindrome. While checking for a palindrome, you have to ignore spaces, case, and all special characters; i.e. consider only alphanumeric characters.
+
+Return 0 / 1 ( 0 for false, 1 for true ) for this problem
+
+https://leetcode.com/problems/valid-palindrome/description/
+
+C++
+
+int Solution::isPalindrome(string A) {
+    int n = A.length();
+    // Convert all characters to lowercase
+    for (int i = 0; i < n; i++) {
+        if (A[i] >= 'A' && A[i] <= 'Z') {
+            A[i] = A[i] - 'A' + 'a'; // Convert uppercase to lowercase
+        }
+    }
+    
+    int i=0, j=n-1;
+    while(i<=j){
+        if(!((A[i]>='a' && A[i]<='z') || (A[i]>='0' && A[i]<='9'))){
+            i++;
+        }else if(!((A[j]>='a' && A[j]<='z') || (A[j]>='0' && A[j]<='9'))){
+            j--;
+        }else{
+            if(A[i]==A[j]){
+                i++;
+                j--;
+            }else{
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+
+USING INBUILT FUNCTION
+
+JAVA
+
+public class Solution {
+    public int isPalindrome(String A) {
+        A = A.replaceAll("[^A-Za-z0-9]+","").toLowerCase();
+        
+        for(int i=0; i<A.length()/2; i++){
+            if(A.charAt(i)!=A.charAt(A.length()-1-i)){
+                return 0;
+            }
+        }
+        return 1;
+    }
+}
+
+C++
+
+int Solution::isPalindrome(string A) {
+    vector<char>ch;
+    for(char c: A)
+    {
+        if(isalnum(c))
+        ch.push_back(tolower(c));
+    }
+    for(int i=0;i<ch.size()/2;i++)
+    {
+        if(ch[i]!=ch[ch.size()-1-i])
+        return 0;
+    }
+    return 1;
+}

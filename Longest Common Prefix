@@ -1,0 +1,49 @@
+8. Longest Common Prefix
+
+Given the array of strings A, you need to find the longest string S which is the prefix of ALL the strings in the array.
+Longest common prefix for a pair of strings S1 and S2 is the longest string S which is the prefix of both S1 and S2.
+
+For Example: longest common prefix of "abcdefgh" and "abcefgh" is "abc".
+
+https://leetcode.com/problems/longest-common-prefix/description/
+
+JAVA
+
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        String res=strs[0];
+        for(String s:strs){
+            StringBuilder temp = new StringBuilder();
+            int n = Math.min(s.length(),res.length());
+            for(int i=0; i<n; i++){
+                if(s.charAt(i)==res.charAt(i))
+                temp.append(s.charAt(i));
+                else
+                break;
+            }
+            res=temp.toString();
+        }
+        return res;
+    }
+}
+
+C++
+
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        string res=strs[0];
+        for(string s:strs){
+            string temp;
+            int n=min(s.size(),res.size());
+            for(int i=0; i<n; i++){
+                if(s[i]==res[i])
+                temp.push_back(s[i]);
+                else
+                break;
+            }
+            res=temp;
+        }
+        return res;
+    }
+};

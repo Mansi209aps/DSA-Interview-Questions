@@ -1,0 +1,32 @@
+9. Highest Product
+
+Given an array A, of N integers A.
+Return the highest product possible by multiplying 3 numbers from the array.
+NOTE: The solution will fit in a 32-bit signed integer.
+
+https://leetcode.com/problems/maximum-product-of-three-numbers/description/
+
+JAVA
+
+class Solution {
+    public int maximumProduct(int[] nums) {
+        int n = nums.length;
+        Arrays.sort(nums);
+        int ans = nums[n-1]*nums[n-2]*nums[n-3];
+        int res = nums[0]*nums[1]*nums[n-1];
+        return Math.max(ans,res);
+    }
+}
+
+C++
+
+class Solution {
+public:
+    int maximumProduct(vector<int>& nums) {
+        int n=nums.size();
+        sort(nums.begin(),nums.end());
+        int ans=nums[n-1]*nums[n-2]*nums[n-3];
+        int res=nums[0]*nums[1]*nums[n-1];
+        return max(ans,res);
+    }
+};
